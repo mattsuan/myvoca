@@ -1,0 +1,111 @@
+<% @post = Post.new unless @post %>
+
+<div class="main posts-new">
+  <div class="container">
+    <div class="migakusyuu-list-title">
+      <h1 class="form-heading">「未学習単語リスト」に登録</h1>
+    </div>
+    <div class="migakusyuu-list-form">
+      <%= form_tag("/posts/create") do %>
+        <div class="form">
+          <div class="form-body">
+            <div class="form-textarea">
+              <input type="text" class="new-textarea" name="content" placeholder="単語を入力して「登録!」">
+            </div>
+            <div class="form-button">
+              <input class="new-submit-button square_btn" type="submit" value="登録！">
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<% if flash[:notice] %>
+  <div class="flash-success">
+    <p><%= flash[:notice] %></p>
+  </div>
+<% end %>
+
+<div class="toriaezu-box">
+  <div class="box-title">
+    <h1>未学習単語リスト</h1>
+  </div>
+  <div class="level-announce sample_box5">
+    <div class="div-main-sentence">
+      <p>あなたのマイボカレベルは</p>
+    </div>
+    <div class="div-level-sentence">
+      <p class="level-sentence">「<%= @level_name %>」</p>
+    </div>
+  </div>
+  <div class="about-wikidata">
+    <p>Wikipedia概要は必ず取得されるわけではありません。参考程度に。</p>
+  </div>
+  <!-- 仮登録単語リスト -->
+  <% @posts.each do |post| %>
+    <div class="toriaezu-box-item">
+  <!-- 単語のGoogle検索へのリンク -->
+      <div class="link">
+        <%= link_to("#{post.content}", "https://www.google.co.jp/search?q=#{post.content}", :target => "_blank", :class => "word-link") %>
+      </div>
+      <!-- カテゴリ選択機能 -->
+      <div class="word-delete">
+        <!-- 単語の削除機能 -->
+            <%= form_tag("/posts/#{post.id}/destroy") do %>
+              <div class="form">
+                <div class="form-body">
+                  <input type="submit" value="✕" class="delete-button">
+                </div>
+              </div>
+            <% end %>
+
+      </div>
+
+  <!-- wikipedia概要の表示 -->
+          <div class="wiki-data">
+<!-- wikipedia画像の表示 -->
+            <!--<%= image_tag("wikipedia_image.png", :size => "100x120") %> -->
+            <div class="wiki-sentence">
+              <%= truncate("#{post.wiki_data}",:length => 150, :separator => "。") %>
+            </div>
+            <div class="wiki-link link">
+              <%= link_to("Wikipediaで「#{post.content}」をもっと知る", "https://ja.wikipedia.org/wiki/#{post.content}", :target => "_blank") %>
+            </div>
+              <div class="google-link link">
+                <%= link_to("Googleで「#{post.content}」をもっと知る", "https://www.google.co.jp/search?q=#{post.content}", :target => "_blank", :class => "google-link") %>
+              </div>
+          </div>
+          <div class="error-message">
+          </div>
+  <!-- 学習済みリストへの登録 -->
+  <%= form_tag("/posts/#{post.id}/update") do %>
+      <div class="form">
+        <div class="form-body">
+          <!-- 単語の訂正欄 -->
+          <div class="word-rename-form">
+            <input type="text" name="content" placeholder="単語のつづりを訂正する場合はここに入力" class="rename-form">
+          </div>
+          <div class="registration-form">
+            <!-- 単語の定義入力欄 -->
+            <div class="definition-area">
+              <textarea name="definition" placeholder="単語の定義を簡潔に！" class="definition-form"></textarea>
+            </div>
+            <!-- カテゴリー選択 -->
+            <div class="category-check">
+              <%= collection_select :category_name, :category_name, Category.all, :category_name, :category_name, :prompt => "カテゴリーの選択" %>
+            </div>
+            <!-- 登録ボタン -->
+            <div>
+                <input type="submit" value="学習済み単語リストへ登録" class="word-registration-button">
+            </div>
+            </div>
+
+        </div>
+      </div>
+  <% end %>
+
+</div>
+<% end %>
+</div>

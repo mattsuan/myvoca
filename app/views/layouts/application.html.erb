@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>マイボカ</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<link href="https://fonts.googleapis.com/earlyaccess/nicomoji.css" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/earlyaccess/roundedmplus1c.css" rel="stylesheet" />
+</head>
+
+<body class="box1">
+
+<header>
+  <div class="header-title">マイボカ</div>
+  <div class="header-container">
+    <ul class="header-menus">
+      <li>
+        <a href="/" class="link-button index-link-button"> 未学習単語リスト </a>
+      </li>
+      <li>
+        <a href="/list/words" class="link-button list-link-button">学習済み単語リスト</a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<%= yield %>
+
+<footer>
+</footer>
+</body>
+</html>

@@ -1,0 +1,4 @@
+class LevelsController < ApplicationController
+
+
+end

@@ -1,0 +1,88 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+
+
+body{
+  background-color: #FFFFF0;
+  background-image: url("背景画像１.jpg");
+}
+
+.box1 {
+    padding: 0.5em 1em;
+    margin: 0 0 0 0;
+    font-weight: bold;
+    border: solid 10px #87CEFA;
+
+}
+
+header{
+  background-image: url("風景イラスト.png");
+  border-radius: 50px;
+  background-repeat: no-repeat;
+  background-position: center 80%;
+  background-size: cover;
+}
+
+.header-title {
+  font-family: "Nico Moji";
+  font-size: 120px;
+  text-align:center;
+  height: 100%;
+  color: white;
+  text-stroke: 1px #4689FF;
+  -webkit-text-stroke: 1px #4689FF;
+ }
+
+ .header-container ul {
+  height:100px;
+  text-align:center;
+ }
+
+ .header-container li {
+  display:inline-block;
+
+ }
+
+ .link-button{
+   display: inline-block;
+   padding: 10px 10px;
+   margin-right: 20px;
+   text-decoration: none;
+   background: #668ad8;/*ボタン色*/
+   color: #FFF;
+   border-bottom: solid 4px #627295;
+   border-radius: 3px;
+ }
+
+ .index-link-button{
+   margin-right: 20px;
+ }
+
+ .list-link-button{
+   margin-top: 5px;
+ }
+
+ .link-button:active{
+   -ms-transform: translateY(4px);
+   -webkit-transform: translateY(4px);
+   transform: translateY(4px);/*下に動く*/
+   border-bottom: none;/*線を消す*/
+ }
+
+ .search-result-category-background{
+   font-size: 30px;
+ }

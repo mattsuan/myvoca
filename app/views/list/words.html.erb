@@ -1,0 +1,75 @@
+
+<div class="words-list box5">
+
+  <div class="box-title">
+    <h1>学習済み単語リスト</h1>
+  </div>
+
+  <div class="level-announce sample_box5">
+    <div class="div-main-sentence">
+      <p>あなたのマイボカレベルは</p>
+    </div>
+    <div class="div-level-sentence">
+      <p class="level-sentence">「<%= @level_name %>」</p>
+    </div>
+  </div>
+
+<!-- カテゴリ表示・編集機能 -->
+  <div class="category-edit">
+
+    <p>現在のカテゴリー一覧</p>
+    <div class="category-list">
+      <% @categories.each do |category| %>
+        <% if category.category_name != "" %>
+          <%= form_tag("/list/#{category.id}/category_destroy") do %>
+            <div class="category-set">
+              <p style="background-color: <%= category.category_color %>;", class="category-background"><%= category.category_name %></p>
+              <input type="submit" value="✕" class="category-delete-button">
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="category-make-form">
+      <%= form_tag("/list/create") do %>
+        <input type="text" class="category-form" name="category_name" placeholder="新しいカテゴリ名を入力">
+        <input type="submit" value="作成" class="category-form-button">
+      <% end %>
+    </div>
+
+    <div class="category-notice">
+      <p>※カテゴリーはいくつでも登録できます</p>
+      <p>※15個めまでは各カテゴリーに色がつきます</p>
+    </div>
+
+  </div>
+
+
+<!-- 検索機能 -->
+
+
+  <div class="list-container kakomi-tape2">
+
+    <div class="words-search">
+      <%= form_tag("/list/search_result", method: "get") do %>
+      <%= label_tag :content, "単語名" %><%= text_field_tag :content, params[:content] %>
+      <%= collection_select :category_name, :category_name, Category.all, :category_name, :category_name, :prompt => "カテゴリの選択" %>
+      <%= submit_tag "検索" %>
+      <% end %>
+    </div>
+
+    <% @words.each do |word| %>
+      <div class="list-words">
+        <%= form_tag("/list/#{word.id}/destroy") do %>
+          <%= word.updated_at.strftime('%Y/%m/%d %H:%M') %>
+          <input type="submit" value="✕" class="word-delete-button">
+          <%= link_to("#{word.content}", "https://www.google.co.jp/search?q=#{word.content}", :target => "_blank") %>
+          <p style="background-color: <%= word.category_color %>;", class="category-background"><%= word.category_name %></p>
+          <%= word.definition %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+</div>

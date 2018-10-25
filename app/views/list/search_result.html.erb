@@ -1,0 +1,14 @@
+  <div class="list-container kakomi-tape2">
+    <div class="category-name">
+      <p style="background-color: <%= @category_color %>;", class="category-background search-result-category-background"><%= @category_name %></p>
+    </div>
+    <% @search_results.each do |search_result| %>
+      <div class="list-words">
+        <%= form_tag("/list/#{search_result.id}/destroy") do %>
+          <input type="submit" value="削除" class="delete-button">
+          <%= link_to("#{search_result.content}", "https://www.google.co.jp/search?q=#{search_result.content}", :target => "_blank") %>
+          <%= search_result.definition %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
