@@ -9,7 +9,6 @@ class PostsController < ApplicationController
     #@wikidata = Wikidata.find_by(word_id: params[:id])
     @amount = Post.where(registration_type: 1).count
 
-  if @amount
     if @amount < 600 && @amount >= 500
       @level = Level.find_by(level_order: 15)
     elsif @amount < 500 && @amount >= 400
@@ -41,8 +40,9 @@ class PostsController < ApplicationController
     else @amount < 3 && @amount >= 1
       @level = Level.find_by(level_order: 1)
     end
-    @level_name = @level.level_name
-  end
+    if @level
+      @level_name = @level.level_name
+    end
   end
 
   def new
