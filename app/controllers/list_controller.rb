@@ -1,4 +1,3 @@
-require 'pry'
 
 class ListController < ApplicationController
 
@@ -43,7 +42,6 @@ class ListController < ApplicationController
   end
 
   def category_destroy
-    #binding.pry
     @category = Category.find_by(id: params[:id])
     if @category.category_color == nil
       @category.destroy
@@ -55,7 +53,6 @@ class ListController < ApplicationController
   end
 
   def create
-    #binding.pry
     @category = Category.find_by(category_name: "")
     if @category
       @category.category_name = params[:category_name]
@@ -73,7 +70,6 @@ class ListController < ApplicationController
   end
 
   def search_result
-    #binding.pry
     @categories = Category.where("category_name not ?", "")
     @search_results = Post.search(params[:content], params[:category_name][:category_name])
     if params[:category_name][:category_name] == ""

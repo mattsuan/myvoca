@@ -18,9 +18,9 @@ ActiveRecord::Schema.define(version: 20181015071357) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "category_name"
-    t.string   "text"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.text     "category_color"
   end
 
   create_table "levels", id: false, force: :cascade do |t|
@@ -36,12 +36,7 @@ ActiveRecord::Schema.define(version: 20181015071357) do
     t.integer  "registration_type"
     t.text     "wiki_data"
     t.text     "category_name"
-  end
-
-  create_table "true_posts", force: :cascade do |t|
-    t.text     "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.text     "category_color"
   end
 
   create_table "wikidata", force: :cascade do |t|

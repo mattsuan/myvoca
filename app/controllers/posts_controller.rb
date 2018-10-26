@@ -1,6 +1,5 @@
 require 'net/http'
 require 'open-uri'
-require 'pry'
 
 class PostsController < ApplicationController
 
@@ -48,7 +47,6 @@ class PostsController < ApplicationController
   end
 
   def create
-    #binding.pry
     if params[:content] != ""
       parameter = URI.encode_www_form({output: 'json', keyword: params[:content]})
       uri = URI.parse("http://wikipedia.simpleapi.net/api?#{parameter}")
@@ -82,7 +80,6 @@ class PostsController < ApplicationController
   end
 
   def update
-    #binding.pry
     @post = Post.find_by(id: params[:id])
     #@categories = Category.all
     if params[:content] != ""
@@ -103,7 +100,6 @@ class PostsController < ApplicationController
   end
 
   def categorize
-    #binding.pry
     @post = Post.find_by(id: params[:id])
     @post.category_name = params[:category_name]
     @post.save
