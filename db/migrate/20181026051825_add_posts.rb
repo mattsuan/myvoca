@@ -4,7 +4,6 @@ class AddPosts < ActiveRecord::Migration
     add_column :posts, :registration_type, :integer
     add_column :posts, :wiki_data, :text
     add_column :posts, :category_name, :text
-    add_column :posts, :category_name, :text
     add_column :posts, :category_color, :text
     add_column :wiki_data, :post_content, :text
     add_column :categories, :category_color, :text
