@@ -35,7 +35,10 @@ class ListController < ApplicationController
     else @amount < 3 && @amount >= 1
       @level = Level.find_by(level_order: 1)
     end
-    @level_name = @level.level_name
+
+    if @level
+      @level_name = @level.level_name
+    end
 
     @words = Post.where(registration_type: 1).order(updated_at: :desc)
     @categories = Category.where.not(category_name: nil).order(updated_at: :asc)
