@@ -8,6 +8,7 @@ class PostsController < ApplicationController
     #@wikidatum = Wikidatum.find_by(post_content: params[:content])
     #@wikidata = Wikidata.find_by(word_id: params[:id])
     @amount = Post.where(registration_type: 1).count
+
     if @amount < 600 && @amount >= 500
       @level = Level.find_by(level_order: 15)
     elsif @amount < 500 && @amount >= 400
